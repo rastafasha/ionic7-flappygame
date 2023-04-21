@@ -1,27 +1,43 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.wrapper {
+    height: 100vh;
+    background: linear-gradient(to bottom, #0c89ff, #92edff)
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.d-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.background {
+    background: url('/assets/images/bg-flappy.jpeg') no-repeat;
+    position: relative;
+    overflow: hidden;
 }
 
-#container a {
-  text-decoration: none;
+.text {
+    font-family: 'Game';
+    text-align: center;
+    height: 70vh;
+    animation: float 2s ease-in-out infinite;
+    font-size: 2em;
+    color: white;
+    .subtext {
+        font-size: 19px;
+        padding-bottom: 10px;
+    }
+}
+
+.score {
+    font-family: 'Game';
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 30%;
+    left: 50%;
+    font-size: 2em;
+    color: white;
+}
+
+.bird-logo {
+    width: 70px;
 }

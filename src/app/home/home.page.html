@@ -1,20 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+    <div class="d-flex-center wrapper" (click)="jump()">
+        <div class="background" [ngStyle]="{
+        'background-size': container_width+'px ' + container_height+'px ',
+        'width': container_width+'px',
+        'height': container_height+'px',
+      }">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+            <!-- juego sin iniciar -->
+            <div *ngIf="!gameStarted" class="d-flex-center text">
+                <section>
+                    <!-- bird logo -->
+                    <img class="bird-logo" src="/assets/images/bird.gif" alt="">
+                    <!-- primer juego -->
+                    <div *ngIf="!gameOver">
+                        <div class="subtext">Ionic 7</div>
+                        Flappy Bird
+                    </div>
+                    <!-- juego finalizado -->
+                    <div *ngIf="gameOver">
+                        <div class="subtext">Juego Finalizado</div>
+                        Puntaje:{{score}}
+                    </div>
+                    <!-- Comenzar juego -->
+                    <ion-button (click)="startGame()" color="warning" mode="ios" shape="round">
+                        {{!gameOver ? 'Jugar' : 'Volver a Jugar'}}
+                        <ion-icon slot="end" name="play"></ion-icon>
+                    </ion-button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+                    <!-- activar /desctivar musica -->
+
+                    <ion-button (click)="playMusic()" color="success" mode="ios" shape="round">
+                        <ion-icon [name]="musicActive ? 'volume-mute-outline' : 'volume-high-outline'"></ion-icon>
+                    </ion-button>
+                </section>
+            </div>
+            <!-- juego iniciado -->
+            <section *ngIf="gameStarted">
+                <div class="score">{{score}}</div>
+                <!-- obtaculo arriba -->
+                <app-obstacle [height]="obstacle_height" [width]="obstacle_width" [left]="obstacle_position" [top]="0" [rotation]="180"></app-obstacle>
+                <!-- flappy bird -->
+                <app-bird [height]="bird_height" [width]="bird_width" [top]="bird_position"></app-bird>
+                <!-- obtaculo abajo -->
+                <app-obstacle [height]="container_height - obstacle_gap - obstacle_height" [width]="obstacle_width" [left]="obstacle_position" [top]="container_height - (obstacle_height + (container_height - obstacle_gap - obstacle_height))" [rotation]="0"></app-obstacle>
+            </section>
+        </div>
+    </div>
 </ion-content>
